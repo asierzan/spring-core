@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <context:property-placeholder location="classpath:planes.properties"/>
+
+ 	<bean id = "positiveMessage"
+    	class="spring.core.xmlConf.PositiveMessages">
+    </bean>
+    
+    <bean id = "tragicMessage"
+    	class="spring.core.xmlConf.TragicMessages">
+    </bean>
+
+    <bean id="flightToLondon"
+          class="spring.core.xmlConf.LondonLutonAirport"
+          init-method="startMethod"
+          destroy-method="destroyMethod">
+          <constructor-arg ref="positiveMessage"/>
+    </bean>
+    
+    <bean id="flightToWarsaw"
+          class="spring.core.xmlConf.WarsawChopinAirport"
+          scope="prototype"
+          init-method="startMethod"
+          destroy-method="destroyMethod">
+          <property name="message" ref="tragicMessage"/>
+          <property name="typeOfPlane" value="Boeing-737"/>
+          <property name="flightDuration" value="${airports.flightDuration}"/>
+    </bean>
+
+</beans>

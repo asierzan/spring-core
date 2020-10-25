@@ -30,6 +30,14 @@ public class WarsawChopinAirport implements Airports {
 	public void setFlightDuration(int flightDuration) {
 		this.flightDuration = flightDuration;
 	}
+	
+	public void startMethod() {
+		System.out.println("WarsawChopinAirport: inside startMethod()");
+	}
+	
+	public void destroyMethod() {
+		System.out.println("WarsawChopinAirport: inside destroyMethod()");
+	}
 
 	@Override
 	public String getDeparturePlace() {
