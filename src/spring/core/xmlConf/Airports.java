@@ -4,4 +4,6 @@ public interface Airports {
 	
 	public String getDeparturePlace();
 	
+	public int getNumberOfPassengers(); 
+	
 }

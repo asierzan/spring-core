@@ -6,13 +6,27 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <context:property-placeholder location="classpath:planes.properties"/>
+
+ 	<bean id = "positiveMessage"
+    	class="spring.core.xmlConf.PositiveMessages">
+    </bean>
+    
+    <bean id = "tragicMessage"
+    	class="spring.core.xmlConf.TragicMessages">
+    </bean>
 
     <bean id="flightToLondon"
-          class="spring.core.LondonLutonAirport">
+          class="spring.core.xmlConf.LondonLutonAirport">
+          <constructor-arg ref="positiveMessage"></constructor-arg>
     </bean>
     
     <bean id="flightToWarsaw"
-          class="spring.core.WarsawChopinAirport">
+          class="spring.core.xmlConf.WarsawChopinAirport">
+          <property name="message" ref="tragicMessage"/>
+          <property name="typeOfPlane" value="Boeing-737"/>
+          <property name="flightDuration" value="${airports.flightDuration}"/>
     </bean>
 
 </beans>
